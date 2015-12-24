@@ -461,7 +461,7 @@ return {
     "^[!/](removeadmin) (.*)$", -- sudoers only
     "^[!/](list) (.*)$",
         "^[!/](log)$",
-         "^[!/](creategroup) (.*)$",
+         "^(creategroup) (.*)$",
     "^(setabout) (%d+) (.*)$",
     "^(setrules) (%d+) (.*)$",
     "^(setname) (%d+) (.*)$",
