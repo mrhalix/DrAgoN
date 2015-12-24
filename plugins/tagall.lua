@@ -1,4 +1,4 @@
-do
+[Forwarded from Ǝ (sorblack)پی وی خرابه بیستا استیکر بده جواب بدم]
 local function tagall(cb_extra, success, result) 
      local receiver = cb_extra.receiver 
      local chat_id = "chat#id"..result.id 
@@ -13,7 +13,7 @@ local function tagall(cb_extra, success, result)
  end 
  local function run(msg, matches) 
      local receiver = get_receiver(msg) 
-   if not is_admin(msg) then  
+   if not is_owner(msg) then  
      return "For owner only !" 
    end 
    if matches[1] then 
@@ -25,10 +25,13 @@ local function tagall(cb_extra, success, result)
  
  
  
-
+ return { 
+   description = "Will tag all ppl with a msg.", 
+   usage = { 
+    "/tagall [msg]." 
+   }, 
    patterns = { 
-     "^[!/$&-=+:*.%#?@]tagall +(.+)$",
-     "^tagall +(.+)$"
+     "^[!/$&-=+:*.%#?@](tagall) +(.+)$" 
    }, 
    run = run 
  }
