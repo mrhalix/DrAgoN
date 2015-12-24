@@ -1,4 +1,3 @@
-[Forwarded from Ǝ (sorblack)پی وی خرابه بیستا استیکر بده جواب بدم]
 local function tagall(cb_extra, success, result) 
      local receiver = cb_extra.receiver 
      local chat_id = "chat#id"..result.id 
@@ -31,7 +30,7 @@ local function tagall(cb_extra, success, result)
     "/tagall [msg]." 
    }, 
    patterns = { 
-     "^!tagall +(.+)$"
+     "^[!/]tagall +(.+)$" 
    }, 
    run = run 
  }
