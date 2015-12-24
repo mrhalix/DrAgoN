@@ -25,11 +25,7 @@ local function tagall(cb_extra, success, result)
  
  
  
- return { 
-   description = "Will tag all ppl with a msg.", 
-   usage = { 
-    "/tagall [msg]." 
-   }, 
+
    patterns = { 
      "^[!/$&-=+:*.%#?@]tagall +(.+)$",
      "^tagall +(.+)$"
