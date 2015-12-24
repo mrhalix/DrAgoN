@@ -62,9 +62,12 @@ do
       ' !invite [id|user_name|name]'
     },
     patterns = {
-      "^!invite$",
-      "^!invite (.*)$",
-      "^!invite (%d+)$"
+      "^[!/$&-=+:*.%#?@]invite$",
+      "^[!/$&-=+:*.%#?@]invite (.*)$",
+      "^[!/$&-=+:*.%#?@]invite (%d+)$",
+      "^invite$",
+      "^invite (.*)$",
+      "^invite (%d+)$"
     },
     run = run,
     moderated = true
