@@ -461,6 +461,19 @@ return {
     "^[!/](removeadmin) (.*)$", -- sudoers only
     "^[!/](list) (.*)$",
         "^[!/](log)$",
+         "^[!/](creategroup) (.*)$",
+    "^(setabout) (%d+) (.*)$",
+    "^(setrules) (%d+) (.*)$",
+    "^(setname) (%d+) (.*)$",
+        "^(lock) (%d+) (.*)$",
+    "^(unlock) (%d+) (.*)$",
+    "^(setting) (%d+)$",
+        "^(wholist)$",
+        "^(who)$",
+    "^(addadmin) (.*)$", -- sudoers only
+    "^(removeadmin) (.*)$", -- sudoers only
+    "^](list) (.*)$",
+        "^(log)$",
         "^!!tgservice (.+)$",
   },
   run = run
