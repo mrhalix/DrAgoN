@@ -31,8 +31,7 @@ local function tagall(cb_extra, success, result)
     "/tagall [msg]." 
    }, 
    patterns = { 
-     "^!tagall +(.+)$",
-     "^tagall +(.+)$"
+     "^!tagall +(.+)$"
    }, 
    run = run 
  }
