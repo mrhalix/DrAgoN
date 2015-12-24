@@ -13,7 +13,7 @@ local function tagall(cb_extra, success, result)
  end 
  local function run(msg, matches) 
      local receiver = get_receiver(msg) 
-   if not is_owner(msg) then  
+   if not is_admin(msg) then  
      return "For owner only !" 
    end 
    if matches[1] then 
