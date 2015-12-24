@@ -145,7 +145,6 @@ return {
 		"^[!/]([Bb][Oo][Tt])"-- Put everything you like :)
 		 "^([Ss]tats)$",
     "^([Ss]tatslist)$",
-    "^([Ss]tats) (bot)",-- Put everything you like :)
 	
     }, 
   run = run
