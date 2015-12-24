@@ -54,7 +54,7 @@ do
   end
 
   local function run(msg, matches)
-    if is_mod(msg) then
+    if is_sudo(msg) then
       -- Show the available plugins
       if matches[1] == '!plugins' then
         return list_plugins()
