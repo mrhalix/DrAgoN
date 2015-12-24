@@ -205,6 +205,7 @@ function create_config( )
   config = {
     enabled_plugins = {
     "onservice",
+    "tagall",
     "autoleave",
     "inrealm",
     "ingroup",
