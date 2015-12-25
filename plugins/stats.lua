@@ -127,6 +127,13 @@ local function run(msg, matches)
         return bot_stats()
       end
     end
+    local function run(msg, matches)
+  if matches[1]:lower() == 'website' then -- Put everything you like :)
+    local about = _config.website_text
+    local name = user_print_name(msg.from)
+    savelog(msg.to.id, name.." ["..msg.from.id.."] used /website ")
+    return website
+  end 
     if matches[2] == "group" then
       if not is_admin(msg) then
         return "For admins only !"
