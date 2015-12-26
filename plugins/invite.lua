@@ -27,7 +27,12 @@ do
       return send_large_msg(extra.chat, "Can't invite user to this group.")
     end
   end
-
+  if not is_sudo(msg) then
+    return
+  end
+  --if not is_admin(msg) then -- For admins only !
+    --return 'Only admins can invite.'
+  --end
   local function action_by_reply(extra, success, result)
     if success == 1 then
       chat_add_user('chat#id'..result.to.id, 'user#id'..result.from.id, callback, false)
