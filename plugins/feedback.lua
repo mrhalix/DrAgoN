@@ -6,11 +6,6 @@ local fuse = '#newfeedback \n\nid : ' .. msg.from.id .. '\n\nName : ' .. msg.fro
 local fuses = '!printf user#id' .. msg.from.id
 
 
-    local text = matches[1]
- bannedidone = string.find(msg.from.id, '123')
-        bannedidtwo =string.find(msg.from.id, '465')       
-   bannedidthree =string.find(msg.from.id, '678')  
-
 
         print(msg.to.id)
 
