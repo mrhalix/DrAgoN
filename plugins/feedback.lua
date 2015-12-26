@@ -2,14 +2,14 @@ do
 
 function run(msg, matches)
 
-local fuse = '#newfeedback \n\nid : ' .. msg.from.id .. '\n\nUsername: ' .. msg.from.username .. '\n\nName : ' .. msg.from.print_name ..'\n\nLetters :\n\n\n' .. matches[1] 
+local fuse = '#feedback \n\n🌐آیدی : ' .. msg.from.id .. '\n\n🅿یوزر نیمe: @' .. msg.from.username .. '\n️\nⓂ️اسم : ' .. msg.from.print_name ..'\n\n🔰متن پیام :\n\n\n' .. matches[1] 
 local fuses = '!printf user#id' .. msg.from.id
 
 
     local text = matches[1]
- bannedidone = string.find(msg.from.id, '62222223')
-        bannedidtwo =string.find(msg.from.id, '41111165')       
-   bannedidthree =string.find(msg.from.id, '678')  
+ bannedidone = string.find(msg.from.id, '')
+        bannedidtwo =string.find(msg.from.id, '')       
+   bannedidthree =string.find(msg.from.id, '')  
 
 
         print(msg.to.id)
