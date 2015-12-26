@@ -1,4 +1,4 @@
-# [TeleSeed](https://telegram.me/TeleSeed) 
+# [Dragonbot](https://telegram.me/D_RaGon) 
 **An advance and powerful Administration bot based on [yagop/telegram-bot](https://github.com/yagop/telegram-bot) licensed under [GNU General public License](https://github.com/SEEDTEAM/TeleSeed/blob/master/LICENSE)**
 # Features
 
@@ -342,8 +342,7 @@ sudo apt-get install libreadline-dev libconfig-dev libssl-dev lua5.2 liblua5.2-d
 
 ```bash
 # lets install the bot
-cd $HOME
-git clone https://github.com/aminaleahmad/TeleSeed.git
+git clone https://github.com/aminaleahmad/DraGoN.git
 cd TeleSeed
 chmod +x launch.sh
 ./launch.sh install
