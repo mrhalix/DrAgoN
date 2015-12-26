@@ -22,7 +22,7 @@ local fuses = '!printf user#id' .. msg.from.id
                  
                  local sends0 = send_msg('chat#id75744575', fuse, ok_cb, false)
 
- return '✅فرستاده شد '
+ return ' ✅فرستاده شد '
 
      
 
