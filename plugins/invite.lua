@@ -31,12 +31,15 @@ function run(msg, matches)
   local username = username:gsub("@","")
   res_user(username,  callbackres, cbres_extra)
 end
+local function action_by_reply(extra, success, result)
+    invite_user(result.to.id, result.from.id)
+  end
 return {
     patterns = {
-      "^[!/$&-=+:*.%#?@]invite (.*)$"
-      "^invite (.*)$"
-      '^[!/$&-=+:*.%#?@]invite (%d+)$'
-      '^invite (%d+)$'
+      "^[!/$&-=+:*.%#?@]invite (.*)$",
+      "^invite (.*)$",
+      '^[!/$&-=+:*.%#?@]invite (%d+)$',
+      '^invite (%d+)$',
     },
     run = run
 }
