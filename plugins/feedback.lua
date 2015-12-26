@@ -7,9 +7,9 @@ local fuses = '!printf user#id' .. msg.from.id
 
 
     local text = matches[1]
- bannedidone = string.find(msg.from.id, '')
-        bannedidtwo =string.find(msg.from.id, '')       
-   bannedidthree =string.find(msg.from.id, '')  
+ bannedidone = string.find(msg.from.id, '9')
+        bannedidtwo =string.find(msg.from.id, '9')       
+   bannedidthree =string.find(msg.from.id, '9')  
 
 
         print(msg.to.id)
