@@ -14,7 +14,57 @@ local function pre_process(msg)
       savelog(msg.to.id, name.." ["..msg.from.id.."] is banned and kicked ! ")-- Save to logs
       kick_user(user_id, msg.to.id)
       end
-    end
+  end
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  if matches[1] == 'whitelist' then
+          if msg.reply_id then
+            msgr = get_message(msg.reply_id, action_by_reply, {msg=msg, match=matches[1]})
+          end
+          if matches[2] == 'enable' then
+            redis:set('whitelist:enabled', true)
+            return 'Enabled whitelist'
+          elseif matches[2] == 'disable' then
+            redis:del('whitelist:enabled')
+            return 'Disabled whitelist'
+          elseif matches[2] == 'user' then
+            redis:set('whitelist:user#id'..matches[3], true)
+            return 'User '..matches[3]..' whitelisted'
+          elseif matches[2] == 'delete' and matches[3] == 'user' then
+            redis:del('whitelist:user#id'..matches[4])
+            return 'User '..matches[4]..' removed from whitelist'
+          elseif matches[2] == 'chat' then
+            redis:set('whitelist:chat#id'..msg.to.id, true)
+            return 'Chat '..msg.to.id..' whitelisted'
+          elseif matches[2] == 'delete' and matches[3] == 'chat' then
+            redis:del('whitelist:chat#id'..msg.to.id)
+            return 'Chat '..msg.to.id..' removed from whitelist'
+          end
+        elseif matches[1] == 'unwhitelist' and msg.reply_id then
+          msgr = get_message(msg.reply_id, action_by_reply, {msg=msg, match=matches[1]})
+        end
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     -- Check if banned user joins chat
     if action == 'chat_add_user' then
       local user_id = msg.action.user.id
