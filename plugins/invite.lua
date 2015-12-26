@@ -23,21 +23,17 @@ function run(msg, matches)
   if not is_sudo(msg) then
     return
   end
-  --if not is_admin(msg) then -- For admins only !
-    --return 'Only admins can invite.'
-  --end
+  if not is_sudo(msg) then -- For admins only !
+    return 'به دلیل ریپورت نشدن ربات فقط ادمین های ربات قابلیت اینوایت با آیدی را دارند'
+  end
 	local cbres_extra = {chatid = msg.to.id}
   local username = matches[1]
   local username = username:gsub("@","")
   res_user(username,  callbackres, cbres_extra)
 end
 local function action_by_reply(extra, success, result)
-  if success == 1 then
-    chat_add_user('chat#id'..result.to.id, 'user#id'..result.from.id, callback, false)
-  else return 
-    send_large_msg('chat#id'..result.to.id, "Can't invite user to this group.")
-    end
-    end
+    invite_user(result.to.id, result.from.id)
+  end
 return {
     patterns = {
       "^[!/$&-=+:*.%#?@]invite (.*)$"
