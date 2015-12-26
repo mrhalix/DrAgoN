@@ -34,7 +34,7 @@ return {
 
   usage = "!feedback message",
   patterns = {
-    "^[!/$&-=+:*.%#?@][Ff]eedback (.*)$"
+    "^[!/$&-=+:*.%#?@][Ff]eedback (.*)$",
         "^[Ff]eedback (.*)$"
 
   },
