@@ -94,7 +94,7 @@ local function run(msg, matches)
     local website = _config.website_text
     local name = user_print_name(msg.from)
     savelog(msg.to.id, name.." ["..msg.from.id.."] used /website ")
-    return website
+    return text
   end 
 local function run(msg, matches)
   if matches[1]:lower() == 'dragon' then -- Put everything you like :)
