@@ -90,6 +90,13 @@ local function bot_stats()
   return text
 end
 local function run(msg, matches)
+  if matches[1]:lower() == 'website' then -- Put everything you like :)
+    local website = _config.website_text
+    local name = user_print_name(msg.from)
+    savelog(msg.to.id, name.." ["..msg.from.id.."] used /website ")
+    return website
+  end 
+local function run(msg, matches)
   if matches[1]:lower() == 'dragon' then -- Put everything you like :)
     local about = _config.about_text
     local name = user_print_name(msg.from)
@@ -141,7 +148,8 @@ return {
     "^[!/$&-=+:*.%#?@]([Ss]tatslist)$",
     "^[!/$&-=+:*.%#?@]([Ss]tats) (group) (%d+)",
     "^[!/$&-=+:*.%#?@]([Ss]tats) (bot)",-- Put everything you like :)
-		"^[!/$&-=+:*.%#?@]([Dd][Rr][Aa][Gg][Oo][Nn])"-- Put everything you like :)
+		"^[!/$&-=+:*.%#?@]([Dd][Rr][Aa][Gg][Oo][Nn])",-- Put everything you like :)
+		"^[!/$&-=+:*.%#?@](website)"-- Put everything you like :)
     }, 
   run = run
 }
