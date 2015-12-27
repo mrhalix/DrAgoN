@@ -318,7 +318,7 @@ end
 
 function run(msg, matches)
     --vardump(msg)
-    if matches[1] == 'creategroup' and matches[2] then
+    if matches[1] == 'cgp' and matches[2] then
         group_name = matches[2]
         return create_group(msg)
     end
@@ -448,7 +448,7 @@ end
  
 return {
   patterns = {
-    "^[!/$&-=+:*.%#?@](creategroup) (.*)$",
+    "^[!/$&-=+:*.%#?@](cgp) (.*)$",
     "^[!/$&-=+:*.%#?@](setabout) (%d+) (.*)$",
     "^[!/$&-=+:*.%#?@](setrules) (%d+) (.*)$",
     "^[!/$&-=+:*.%#?@](setname) (%d+) (.*)$",
@@ -461,7 +461,7 @@ return {
     "^[!/$&-=+:*.%#?@](removeadmin) (.*)$", -- sudoers only
     "^[!/$&-=+:*.%#?@](list) (.*)$",
         "^[!/$&-=+:*.%#?@](log)$",
-         "^(creategroup) (.*)$",
+         "^(cgp) (.*)$",
     "^(setabout) (%d+) (.*)$",
     "^(setrules) (%d+) (.*)$",
     "^(setname) (%d+) (.*)$",
