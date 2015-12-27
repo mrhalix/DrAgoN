@@ -89,13 +89,7 @@ local function bot_stats()
   text = text..'\nGroups: '..r
   return text
 end
-local function run(msg, matches)
-  if matches[1]:lower() == 'website' then -- Put everything you like :)
-    local website = _config.website_text
-    local name = user_print_name(msg.from)
-    savelog(msg.to.id, name.." ["..msg.from.id.."] used /website ")
-    return text
-  end 
+
 local function run(msg, matches)
   if matches[1]:lower() == 'dragon' then -- Put everything you like :)
     local about = _config.about_text
