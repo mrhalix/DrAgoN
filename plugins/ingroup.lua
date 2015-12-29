@@ -133,17 +133,17 @@ local function get_description(msg, data)
   local about = string.gsub(msg.to.print_name, "_", " ")..':\n\n'..about
   return 'About '..about
 end
-local function lock_group_arabic(msg, data, target)
+local function lock_group_persian(msg, data, target)
   if not is_momod(msg) then
-    return "For moderators only!"
+    return "شما به این بخش دسترسی ندارید!!"
   end
   local group_arabic_lock = data[tostring(target)]['settings']['lock_arabic']
   if group_arabic_lock == 'yes' then
-    return 'Arabic is already locked'
+    return 'فارسی قبلا قفل شده'
   else
     data[tostring(target)]['settings']['lock_arabic'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'Arabic has been locked'
+    return 'زبان فارسی قفل شد!'
   end
 end
 
