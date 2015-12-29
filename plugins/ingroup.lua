@@ -574,7 +574,8 @@ local function run(msg, matches)
           redis:incr(namehash)
           local namehash = 'name:changed:'..msg.to.id..':'..msg.from.id
           local nameprotectionredis = redis:get(namehash) 
-          if nameprotectionredis then 
+          if nameprotectionredis then
+             chat_del_user(chat, user, ok_cb, true)
             if tonumber(nameprotectionredis) == 4 and not is_owner(msg) then 
               kick_user(msg.from.id, msg.to.id)
             end
