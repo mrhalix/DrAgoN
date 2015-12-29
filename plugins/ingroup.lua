@@ -111,7 +111,7 @@ local function show_group_settingsmod(msg, data, target)
     	bots_protection = data[tostring(msg.to.id)]['settings']['lock_bots']
    	end
   local settings = data[tostring(target)]['settings']
-  local text = "تنظیمات گروه:\nقفل اسم: "..settings.lock_name.."\nقفل عکس:"..settings.lock_photo.."\nقفل اعضا:"..settings.lock_member.."\n تعداد پیام اسپم:"..NUM_MSG_MAX.."\n کیک کردن بات ها:"..bots_protection
+  local text = "تنظیمات گروه:\nقفل اسم: "..settings.lock_name.."\nقفل فارسی :"group_arabic"\nقفل عکس:"..settings.lock_photo.."\nقفل اعضا:"..settings.lock_member.."\n تعداد پیام اسپم:"..NUM_MSG_MAX.."\n کیک کردن بات ها:"..bots_protection
   return text
 end
 
