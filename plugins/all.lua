@@ -115,29 +115,7 @@ local function all(target, receiver)
   send_document(receiver,"./groups/"..target.."all.txt", ok_cb, false)
   return
 end
-local function همه(target, receiver)
-  local text = "All the things I know about this group \n \n"
-  local settings = show_group_settings(target)
-  text = text.."Group settings \n"..settings
-  local rules = get_rules(target)
-  text = text.."\n\nRules: \n"..rules
-  local description = get_description(target)
-  text = text.."\n\nAbout: \n"..description
-  local modlist = modlist(target)
-  text = text.."\n\n"..modlist
-  local link = get_link(target)
-  text = text.."\n\n"..link
-  local stats = chat_stats(target)
-  text = text.."\n\n"..stats
-  local ban_list = ban_list(target)
-  text = text.."\n\n"..ban_list
-  local file = io.open("./groups/"..target.."all.txt", "w")
-  file:write(text)
-  file:flush()
-  file:close()
-  send_document(receiver,"./groups/"..target.."all.txt", ok_cb, false)
-  return
-end
+
 function run(msg, matches)
 
   if matches[1] == "all" and matches[2] and is_owner2(msg.from.id, matches[2]) then
@@ -155,21 +133,7 @@ function run(msg, matches)
     end
     return all(msg.to.id, receiver)
   end
-    if matches[1] == "همه" and matches[2] and is_owner2(msg.from.id, matches[2]) then
-    local receiver = get_receiver(msg)
-    local target = matches[2]
-    return همه(target, receiver)
-  end
-  if not is_owner(msg) then
-    return
-  end
-  if matches[1] == "همه" and not matches[2] and msg.to.id ~= our_id then
-    local receiver = get_receiver(msg)
-    if not is_owner(msg) then
-      return
-    end
-    return همه(msg.to.id, receiver)
-  end
+
 
   return
 end
@@ -180,9 +144,6 @@ return {
   "^(all)$",
   "^[!/$&-=+:*.%#?@](all) (%d+)$",
   "^(all) (%d+)$",
-  "^[!/$&-=+:*.%#?@](همه)$",
-  "^(همه)$",
-  "^[!/$&-=+:*.%#?@](همه) (%d+)$"
   },
   run = run
 }
