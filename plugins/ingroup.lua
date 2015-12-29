@@ -642,29 +642,29 @@ local function run(msg, matches)
     
     
     
-    local function lock_group_link(msg, data, target)
+    local function lock_group_tabligh(msg, data, target)
   if not is_momod(msg) then
     return "شما به این بخش دسترسی ندارید!!"
   end
-  local group_link_lock = data[tostring(target)]['settings']['lock_link']
-  if group_link_lock == 'yes' then
+  local group_tabligh_lock = data[tostring(target)]['settings']['lock_tabligh']
+  if group_tabligh_lock == 'yes' then
     return 'تبلیغات قبلا قفل شده'
   else
-    data[tostring(target)]['settings']['lock_link'] = 'yes'
+    data[tostring(target)]['settings']['lock_tabligh'] = 'yes'
     save_data(_config.moderation.data, data)
     return 'تبلیغات قفل شد!'
   end
 end
 
-local function unlock_group_link(msg, data, target)
+local function unlock_group_tabligh(msg, data, target)
   if not is_momod(msg) then
     return "شما به این بخش دسترسی ندارید!"
   end
-  local group_link_lock = data[tostring(target)]['settings']['lock_link']
-  if group_link_lock == 'no' then
+  local group_tabligh_lock = data[tostring(target)]['settings']['lock_tabligh']
+  if group_tabligh_lock == 'no' then
     return 'تبلیغات قفل نبوده!'
   else
-    data[tostring(target)]['settings']['lock_link'] = 'no'
+    data[tostring(target)]['settings']['lock_tabligh'] = 'no'
     save_data(_config.moderation.data, data)
     return 'قفل تبلیغات برداشته شد!'
   end
@@ -723,9 +723,9 @@ end
       if matches[2] == 'arabic' then
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked arabic ")
         return lock_group_arabic(msg, data, target)
-      if matches[2] == 'link' then
-        savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked link ")
-        return lock_group_link(msg, data, target)
+      if matches[2] == 'tabligh' then
+        savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked tabligh ")
+        return lock_group_tabligh(msg, data, target)
       end
       if matches[2] == 'bots' then
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked bots ")
@@ -753,9 +753,9 @@ end
       if matches[2] == 'arabic' then
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked arabic ")
         return unlock_group_arabic(msg, data, target)
-      if matches[2] == 'link' then
-        savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked link ")
-        return unlock_group_link(msg, data, target)
+      if matches[2] == 'tabligh' then
+        savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked tabligh ")
+        return unlock_group_tabligh(msg, data, target)
       end
       if matches[2] == 'bots' then
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked bots ")
