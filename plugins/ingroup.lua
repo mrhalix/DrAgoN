@@ -117,17 +117,17 @@ end
 
 local function set_descriptionmod(msg, data, target, about)
   if not is_momod(msg) then
-    return "شما به این بخش دسترسی ندارید!"
+    return "For moderators only!"
   end
   local data_cat = 'description'
   data[tostring(target)][data_cat] = about
   save_data(_config.moderation.data, data)
-  return 'تنظیم اطلاعات گروه به:\n'..about
+  return 'Set group description to:\n'..about
 end
 local function get_description(msg, data)
   local data_cat = 'description'
   if not data[tostring(msg.to.id)][data_cat] then
-    return 'اطلاعات گروه وجود ندارد'
+    return 'No description available.'
   end
   local about = data[tostring(msg.to.id)][data_cat]
   local about = string.gsub(msg.to.print_name, "_", " ")..':\n\n'..about
@@ -135,87 +135,87 @@ local function get_description(msg, data)
 end
 local function lock_group_arabic(msg, data, target)
   if not is_momod(msg) then
-    return "شما به این بخش دسترسی ندارید!!"
+    return "For moderators only!"
   end
   local group_arabic_lock = data[tostring(target)]['settings']['lock_arabic']
   if group_arabic_lock == 'yes' then
-    return 'فارسی قبلا قفل شده'
+    return 'Arabic is already locked'
   else
     data[tostring(target)]['settings']['lock_arabic'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'زبان فارسی قفل شد!'
+    return 'Arabic has been locked'
   end
 end
 
 local function unlock_group_arabic(msg, data, target)
   if not is_momod(msg) then
-    return "شما به این بخش دسترسی ندارید!"
+    return "For moderators only!"
   end
   local group_arabic_lock = data[tostring(target)]['settings']['lock_arabic']
   if group_arabic_lock == 'no' then
-    return 'زبان فارسی قفل نبوده!'
+    return 'Arabic is already unlocked'
   else
     data[tostring(target)]['settings']['lock_arabic'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'قفل زبان فارسی برداشته شد!'
+    return 'Arabic has been unlocked'
   end
 end
 
 local function lock_group_bots(msg, data, target)
   if not is_momod(msg) then
-    return "شما به این بخش دسترسی ندارید!"
+    return "For moderators only!"
   end
   local group_bots_lock = data[tostring(target)]['settings']['lock_bots']
   if group_bots_lock == 'yes' then
-    return 'قفل بات ها از قبل فعال بوده'
+    return 'Bots protection is already enabled'
   else
     data[tostring(target)]['settings']['lock_bots'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'قفل بات ها با موفقیت فعال شد'
+    return 'Bots protection has been enabled'
   end
 end
 
 local function unlock_group_bots(msg, data, target)
   if not is_momod(msg) then
-    return "شما به این بخش دسترسی ندارید!"
+    return "For moderators only!"
   end
   local group_bots_lock = data[tostring(target)]['settings']['lock_bots']
   if group_bots_lock == 'no' then
-    return 'قفل بات ها فعال نبوده'
+    return 'Bots protection is already disabled'
   else
     data[tostring(target)]['settings']['lock_bots'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'قفل بات ها غیرفعال شد'
+    return 'Bots protection has been disabled'
   end
 end
 
 local function lock_group_namemod(msg, data, target)
   if not is_momod(msg) then
-    return "شما به این بخش دسترسی ندارید!"
+    return "For moderators only!"
   end
   local group_name_set = data[tostring(target)]['settings']['set_name']
   local group_name_lock = data[tostring(target)]['settings']['lock_name']
   if group_name_lock == 'yes' then
-    return 'قفل اسم گروه از قبل فعال بوده'
+    return 'Group name is already locked'
   else
     data[tostring(target)]['settings']['lock_name'] = 'yes'
     save_data(_config.moderation.data, data)
     rename_chat('chat#id'..target, group_name_set, ok_cb, false)
-    return 'اسم گروه با موفقیت قفل شد'
+    return 'Group name has been locked'
   end
 end
 local function unlock_group_namemod(msg, data, target)
   if not is_momod(msg) then
-    return "شما به این بخش دسترسی ندارید!"
+    return "For moderators only!"
   end
   local group_name_set = data[tostring(target)]['settings']['set_name']
   local group_name_lock = data[tostring(target)]['settings']['lock_name']
   if group_name_lock == 'no' then
-    return 'اسم گروه قفل نبوده'
+    return 'Group name is already unlocked'
   else
     data[tostring(target)]['settings']['lock_name'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'فقل اسم با موفقیت فعال شد'
+    return 'Group name has been unlocked'
   end
 end
 local function lock_group_floodmod(msg, data, target)
@@ -224,11 +224,11 @@ local function lock_group_floodmod(msg, data, target)
   end
   local group_flood_lock = data[tostring(target)]['settings']['flood']
   if group_flood_lock == 'yes' then
-    return 'قفل اسپم از قبل فعال بوده'
+    return 'Group flood is locked'
   else
     data[tostring(target)]['settings']['flood'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'قفل اسپم فعال شد'
+    return 'Group flood has been locked'
   end
 end
 
@@ -238,26 +238,26 @@ local function unlock_group_floodmod(msg, data, target)
   end
   local group_flood_lock = data[tostring(target)]['settings']['flood']
   if group_flood_lock == 'no' then
-    return 'اسپم قفل نبوده'
+    return 'Group flood is not locked'
   else
     data[tostring(target)]['settings']['flood'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'قفل اسپم غیر فعال شد'
+    return 'Group flood has been unlocked'
   end
 end
 
 local function lock_group_membermod(msg, data, target)
   if not is_momod(msg) then
-    return "شما به این بخش دسترسی ندارید"
+    return "For moderators only!"
   end
   local group_member_lock = data[tostring(target)]['settings']['lock_member']
   if group_member_lock == 'yes' then
-    return 'تعداد اعضا از قفل قفل بوده'
+    return 'Group members are already locked'
   else
     data[tostring(target)]['settings']['lock_member'] = 'yes'
     save_data(_config.moderation.data, data)
   end
-  return 'تعداد اعضا با موفقیت قفل شد'
+  return 'Group members has been locked'
 end
 
 local function unlock_group_membermod(msg, data, target)
@@ -266,13 +266,14 @@ local function unlock_group_membermod(msg, data, target)
   end
   local group_member_lock = data[tostring(target)]['settings']['lock_member']
   if group_member_lock == 'no' then
-    return 'تعداد اعضا قفل نبوده'
+    return 'Group members are not locked'
   else
     data[tostring(target)]['settings']['lock_member'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'قفل تعداد اعضا غیر فعال شد'
+    return 'Group members has been unlocked'
   end
 end
+
 local function unlock_group_photomod(msg, data, target)
   if not is_momod(msg) then
     return "For moderators only!"
@@ -673,6 +674,7 @@ local function run(msg, matches)
       if matches[2] == 'arabic' then
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked arabic ")
         return lock_group_arabic(msg, data, target)
+      end
       if matches[2] == 'bots' then
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked bots ")
         return lock_group_bots(msg, data, target)
@@ -699,6 +701,7 @@ local function run(msg, matches)
       if matches[2] == 'arabic' then
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked arabic ")
         return unlock_group_arabic(msg, data, target)
+      end
       if matches[2] == 'bots' then
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked bots ")
         return unlock_group_bots(msg, data, target)
@@ -835,69 +838,31 @@ local function run(msg, matches)
 end
 return {
   patterns = {
-  "^[!/$&-=+:*.%#?@](add)$",
-  "^[!/$&-=+:*.%#?@](rem)$",
-  "^[!/$&-=+:*.%#?@](rules)$",
-  "^[!/$&-=+:*.%#?@](about)$",
-  "^[!/$&-=+:*.%#?@](setname) (.*)$",
-  "^[!/$&-=+:*.%#?@](setphoto)$",
-  "^[!/$&-=+:*.%#?@](promote) (.*)$",
-  "^[!/$&-=+:*.%#?@](help)$",
-  "^[!/$&-=+:*.%#?@](clean) (.*)$",
-  "^[!/$&-=+:*.%#?@](demote) (.*)$",
-  "^[!/$&-=+:*.%#?@](set) ([^%s]+) (.*)$",
-  "^[!/$&-=+:*.%#?@](lock) (.*)$",
-  "^[!/$&-=+:*.%#?@](setowner) (%d+)$",
-  "^[!/$&-=+:*.%#?@](owner)$",
-  "^[!/$&-=+:*.%#?@](res) (.*)$",
-  "^[!/$&-=+:*.%#?@](setgpowner) (%d+) (%d+)$",-- (group id) (owner id)
-  "^[!/$&-=+:*.%#?@](unlock) (.*)$",
-  "^[!/$&-=+:*.%#?@](setflood) (%d+)$",
-  "^[!/$&-=+:*.%#?@](settings)$",
-  "^[!/$&-=+:*.%#?@](modlist)$",
-  "^[!/$&-=+:*.%#?@](newlink)$",
-  "^[!/$&-=+:*.%#?@](link)$",
-  "^(add)$",
-  "^(rem)$",
-  "^(rules)$",
-  "^(about)$",
-  "^(setname) (.*)$",
-  "^(setphoto)$",
-  "^(promote) (.*)$",
-  "^(help)$",
-  "^(clean) (.*)$",
-  "^(demote) (.*)$",
-  "^(set) ([^%s]+) (.*)$",
-  "^(lock) (.*)$",
-  "^(setowner) (%d+)$",
-  "^(owner)$",
-  "^(res) (.*)$",
-  "^(setgpowner) (%d+) (%d+)$",-- (group id) (owner id)
-  "^(unlock) (.*)$",
-  "^(setflood) (%d+)$",
-  "^(settings)$",
-  "^(modlist)$",
-  "^(newlink)$",
-  "^(link)$",
+  "^[!/](add)$",
+  "^[!/](rem)$",
+  "^[!/](rules)$",
+  "^[!/](about)$",
+  "^[!/](setname) (.*)$",
+  "^[!/](setphoto)$",
+  "^[!/](promote) (.*)$",
+  "^[!/](help)$",
+  "^[!/](clean) (.*)$",
+  "^[!/](demote) (.*)$",
+  "^[!/](set) ([^%s]+) (.*)$",
+  "^[!/](lock) (.*)$",
+  "^[!/](setowner) (%d+)$",
+  "^[!/](owner)$",
+  "^[!/](res) (.*)$",
+  "^[!/](setgpowner) (%d+) (%d+)$",-- (group id) (owner id)
+  "^[!/](unlock) (.*)$",
+  "^[!/](setflood) (%d+)$",
+  "^[!/](settings)$",
+  "^[!/](modlist)$",
+  "^[!/](newlink)$",
+  "^[!/](link)$",
   "%[(photo)%]",
   "^!!tgservice (.+)$",
   },
   run = run
 }
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
