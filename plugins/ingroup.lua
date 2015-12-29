@@ -273,19 +273,7 @@ local function unlock_group_membermod(msg, data, target)
     return 'قفل تعداد اعضا غیر فعال شد'
   end
 end
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    local function lock_group_tabligh(msg, data, target)
+local function lock_group_tabligh(msg, data, target)
   if not is_momod(msg) then
     return "شما به این بخش دسترسی ندارید!!"
   end
@@ -312,16 +300,6 @@ local function unlock_group_tabligh(msg, data, target)
     return 'قفل تبلیغات برداشته شد!'
   end
 end
-
-
-
-
-
-
-
-
-
-
 local function unlock_group_photomod(msg, data, target)
   if not is_momod(msg) then
     return "For moderators only!"
