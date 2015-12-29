@@ -274,6 +274,54 @@ local function unlock_group_membermod(msg, data, target)
   end
 end
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    local function lock_group_tabligh(msg, data, target)
+  if not is_momod(msg) then
+    return "شما به این بخش دسترسی ندارید!!"
+  end
+  local group_tabligh_lock = data[tostring(target)]['settings']['lock_tabligh']
+  if group_tabligh_lock == 'yes' then
+    return 'تبلیغات قبلا قفل شده'
+  else
+    data[tostring(target)]['settings']['lock_tabligh'] = 'yes'
+    save_data(_config.moderation.data, data)
+    return 'تبلیغات قفل شد!'
+  end
+end
+
+local function unlock_group_tabligh(msg, data, target)
+  if not is_momod(msg) then
+    return "شما به این بخش دسترسی ندارید!"
+  end
+  local group_tabligh_lock = data[tostring(target)]['settings']['lock_tabligh']
+  if group_tabligh_lock == 'no' then
+    return 'تبلیغات قفل نبوده!'
+  else
+    data[tostring(target)]['settings']['lock_tabligh'] = 'no'
+    save_data(_config.moderation.data, data)
+    return 'قفل تبلیغات برداشته شد!'
+  end
+end
+
+
+
+
+
+
+
+
+
+
 local function unlock_group_photomod(msg, data, target)
   if not is_momod(msg) then
     return "For moderators only!"
@@ -630,55 +678,6 @@ local function run(msg, matches)
       savelog(msg.to.id, name_log.." ["..msg.from.id.."] demoted @".. member)
       chat_info(receiver, username_id, {mod_cmd= mod_cmd, receiver=receiver, member=member})
     end
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    local function lock_group_tabligh(msg, data, target)
-  if not is_momod(msg) then
-    return "شما به این بخش دسترسی ندارید!!"
-  end
-  local group_tabligh_lock = data[tostring(target)]['settings']['lock_tabligh']
-  if group_tabligh_lock == 'yes' then
-    return 'تبلیغات قبلا قفل شده'
-  else
-    data[tostring(target)]['settings']['lock_tabligh'] = 'yes'
-    save_data(_config.moderation.data, data)
-    return 'تبلیغات قفل شد!'
-  end
-end
-
-local function unlock_group_tabligh(msg, data, target)
-  if not is_momod(msg) then
-    return "شما به این بخش دسترسی ندارید!"
-  end
-  local group_tabligh_lock = data[tostring(target)]['settings']['lock_tabligh']
-  if group_tabligh_lock == 'no' then
-    return 'تبلیغات قفل نبوده!'
-  else
-    data[tostring(target)]['settings']['lock_tabligh'] = 'no'
-    save_data(_config.moderation.data, data)
-    return 'قفل تبلیغات برداشته شد!'
-  end
-end
-
-
-
-
-
-
-
-
-
-
     if matches[1] == 'modlist' then
       savelog(msg.to.id, name_log.." ["..msg.from.id.."] requested group modlist")
       return modlist(msg)
