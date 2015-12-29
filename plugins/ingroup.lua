@@ -133,7 +133,7 @@ local function get_description(msg, data)
   local about = string.gsub(msg.to.print_name, "_", " ")..':\n\n'..about
   return 'About '..about
 end
-local function lock_group_persian(msg, data, target)
+local function lock_group_arabic(msg, data, target)
   if not is_momod(msg) then
     return "شما به این بخش دسترسی ندارید!!"
   end
