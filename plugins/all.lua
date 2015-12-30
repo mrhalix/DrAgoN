@@ -93,6 +93,7 @@ local function get_link(target)
 end
 
 local function all(target, receiver)
+  local text = "<center>DragonBot<img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"></center>
   local text = "All the things I know about this group \n \n"
   local settings = show_group_settings(target)
   text = text.."Group settings \n"..settings
