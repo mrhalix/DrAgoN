@@ -27,6 +27,7 @@ local function welcome_message(msg, new_member)
  if is_sudo(msg) then
         return 'سلام بابایی جونم خوش اومدی به گروهمون ❤️😘'
     end
+ if not is_sudo(msg) then
   local data = load_data(_config.moderation.data)
   local welcome_stat = data[tostring(msg.to.id)]['settings']['welcome']
 
