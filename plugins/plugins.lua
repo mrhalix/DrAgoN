@@ -87,7 +87,7 @@ do
         end
         _config.disabled_plugin_on_chat[get_receiver(msg)][matches[2]] = true
         save_config()
-        return 'Plugin '..matches[2]..' disabled for this chat'
+        return ''
       end
     end
     if is_sudo(msg) then
