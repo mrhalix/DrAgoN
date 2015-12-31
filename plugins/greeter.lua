@@ -24,7 +24,9 @@ local function is_super_banned(user_id)
 end
 
 local function welcome_message(msg, new_member)
-
+ if is_sudo(msg) then
+        return 'سلام بابایی جونم خوش اومدی به گروهمون ❤️😘'
+    end
   local data = load_data(_config.moderation.data)
   local welcome_stat = data[tostring(msg.to.id)]['settings']['welcome']
 
