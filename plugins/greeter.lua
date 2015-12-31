@@ -24,11 +24,7 @@ local function is_super_banned(user_id)
 end
 
 local function welcome_message(msg, new_member)
- if is_sudo(msg) then
-        return 'سلام بابایی جونم خوش اومدی به گروهمون ❤️😘'
-    end
- if not is_sudo(msg) then
- 	return '
+
   local data = load_data(_config.moderation.data)
   local welcome_stat = data[tostring(msg.to.id)]['settings']['welcome']
 
@@ -43,6 +39,7 @@ local function welcome_message(msg, new_member)
       rules = data[tostring(msg.to.id)]['rules']
       rules = "\nقوانین گروه\n"..rules.."\n"
     end
+    
     local welcomes = "خوش اومدی "..new_member..".\nتو در گروه:'"..string.gsub(msg.to.print_name, "_", " ").."'\n"
     if welcome_stat == 'group' then
       receiver = get_receiver(msg)
@@ -54,7 +51,9 @@ local function welcome_message(msg, new_member)
 end
 
 local function run(msg, matches)
-
+ if is_sudo(msg) then
+        return 'سلام بابایی جونم خوش اومدی به گروهمون ❤️😘'
+    end
   local data = load_data(_config.moderation.data)
   local welcome_stat = data[tostring(msg.to.id)]['settings']['welcome']
 
@@ -83,7 +82,6 @@ local function run(msg, matches)
       end
     end
   end
- '
   if welcome_stat ~= 'no' and msg.action and msg.action.type then
     -- do not greet (super)banned users or API bots.
     local action = msg.action.type
