@@ -75,7 +75,7 @@ do
         return 'Plugin '..matches[2]..' is enabled again for this chat.'
       -- Disable a plugin on a chat
       elseif matches[1] == 'disable' and matches[3] == 'chat' then
-        print('disable '..matches[2]..' on this chat')
+        print('')
         if not plugin_exists(matches[2]) then
           return 'Plugin '..matches[2]..' doesn\'t exists'
         end
