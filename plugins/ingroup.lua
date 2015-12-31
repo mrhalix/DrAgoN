@@ -106,12 +106,12 @@ local function show_group_settingsmod(msg, data, target)
         	NUM_MSG_MAX = 5
       	end
     end
-    local bots_protection = "🔒"
+    local bots_protection = "ðŸ”’"
     if data[tostring(msg.to.id)]['settings']['lock_bots'] then
     	bots_protection = data[tostring(msg.to.id)]['settings']['lock_bots']
    	end
   local settings = data[tostring(target)]['settings']
-  local text = "تنظیمات گروه:\nقفل اسم: "..settings.lock_name.."\nقفل فارسی: "..settings.lock_arabic.."\nقفل عکس:"..settings.lock_photo.."\nقفل اعضا:"..settings.lock_member.."\n تعداد پیام اسپم:"..NUM_MSG_MAX.."\n کیک کردن بات ها:"..bots_protection
+  local text = "ØªÙ†Ø¸ÛŒÙ…Ø§Øª Ú¯Ø±ÙˆÙ‡:\nÙ‚ÙÙ„ Ø§Ø³Ù…: "..settings.lock_name.."\nÙ‚ÙÙ„ ÙØ§Ø±Ø³ÛŒ: "..settings.lock_arabic.."\nÙ‚ÙÙ„ Ø¹Ú©Ø³:"..settings.lock_photo.."\nÙ‚ÙÙ„ Ø§Ø¹Ø¶Ø§:"..settings.lock_member.."\n ØªØ¹Ø¯Ø§Ø¯ Ù¾ÛŒØ§Ù… Ø§Ø³Ù¾Ù…:"..NUM_MSG_MAX.."\n Ú©ÛŒÚ© Ú©Ø±Ø¯Ù† Ø¨Ø§Øª Ù‡Ø§:"..bots_protection
   return text
 end
 
@@ -138,10 +138,10 @@ local function lock_group_arabic(msg, data, target)
     return "For moderators only!"
   end
   local group_arabic_lock = data[tostring(target)]['settings']['lock_arabic']
-  if group_arabic_lock == '🔒' then
+  if group_arabic_lock == 'ðŸ”’' then
     return 'Arabic is already locked'
   else
-    data[tostring(target)]['settings']['lock_arabic'] = '🔒'
+    data[tostring(target)]['settings']['lock_arabic'] = 'ðŸ”’'
     save_data(_config.moderation.data, data)
     return 'Arabic has been locked'
   end
@@ -166,10 +166,10 @@ local function lock_group_bots(msg, data, target)
     return "For moderators only!"
   end
   local group_bots_lock = data[tostring(target)]['settings']['lock_bots']
-  if group_bots_lock == '🔒' then
+  if group_bots_lock == 'ðŸ”’' then
     return 'Bots protection is already enabled'
   else
-    data[tostring(target)]['settings']['lock_bots'] = '🔒'
+    data[tostring(target)]['settings']['lock_bots'] = 'ðŸ”’'
     save_data(_config.moderation.data, data)
     return 'Bots protection has been enabled'
   end
@@ -195,10 +195,10 @@ local function lock_group_namemod(msg, data, target)
   end
   local group_name_set = data[tostring(target)]['settings']['set_name']
   local group_name_lock = data[tostring(target)]['settings']['lock_name']
-  if group_name_lock == '🔒' then
+  if group_name_lock == 'ðŸ”’' then
     return 'Group name is already locked'
   else
-    data[tostring(target)]['settings']['lock_name'] = '🔒'
+    data[tostring(target)]['settings']['lock_name'] = 'ðŸ”’'
     save_data(_config.moderation.data, data)
     rename_chat('chat#id'..target, group_name_set, ok_cb, false)
     return 'Group name has been locked'
@@ -223,10 +223,10 @@ local function lock_group_floodmod(msg, data, target)
     return "Only admins can do it for now"
   end
   local group_flood_lock = data[tostring(target)]['settings']['flood']
-  if group_flood_lock == '🔒' then
+  if group_flood_lock == 'ðŸ”’' then
     return 'Group flood is locked'
   else
-    data[tostring(target)]['settings']['flood'] = '🔒'
+    data[tostring(target)]['settings']['flood'] = 'ðŸ”’'
     save_data(_config.moderation.data, data)
     return 'Group flood has been locked'
   end
@@ -251,10 +251,10 @@ local function lock_group_membermod(msg, data, target)
     return "For moderators only!"
   end
   local group_member_lock = data[tostring(target)]['settings']['lock_member']
-  if group_member_lock == '🔒' then
+  if group_member_lock == 'ðŸ”’' then
     return 'Group members are already locked'
   else
-    data[tostring(target)]['settings']['lock_member'] = '🔒'
+    data[tostring(target)]['settings']['lock_member'] = 'ðŸ”’'
     save_data(_config.moderation.data, data)
   end
   return 'Group members has been locked'
@@ -741,6 +741,25 @@ local function run(msg, matches)
        savelog(msg.to.id, name_log.." ["..msg.from.id.."] requested group link ["..group_link.."]")
       return "Group link:\n"..group_link
     end
+	if matches[1] == 'linkpv' then
+      if not is_momod(msg) then
+        return "For moderators only!"
+      end
+	  if matches[1] == 'pv' then
+      if not is_momod(msg) then
+        return "For moderators only!"
+      end
+	local msgpv = matches[3]
+	local rever = matches[2] send_large_msg('user#id'..rever,msgpv.."\n" ,ok_cb , false)
+	return "Ù¾ÛŒØ§Ù… Ø§Ø±Ø³Ø§Ù„ Ø´Ø¯ "
+    end
+      local group_link = data[tostring(msg.to.id)]['settings']['set_link']
+      if not group_link then 
+        return "Create a link using /newlink first !"
+      end
+       savelog(msg.to.id, name_log.." ["..msg.from.id.."] requested group link ["..group_link.."]")
+     send_large_msg('user#id'..msg.from.id, "Group link:\n"..group_link)
+    end
     if matches[1] == 'setowner' then
       if not is_owner(msg) then
         return "For owner only!"
@@ -774,8 +793,8 @@ local function run(msg, matches)
       if not is_momod(msg) then
         return "For moderators only!"
       end
-      if tonumber(matches[2]) < 5 or tonumber(matches[2]) > 200 then
-        return "Wrong number,range is [5-200]"
+      if tonumber(matches[2]) < 5 or tonumber(matches[2]) > 20 then
+        return "Wrong number,range is [5-20]"
       end
       local flood_max = matches[2]
       data[tostring(msg.to.id)]['settings']['flood_msg_max'] = flood_max
@@ -861,6 +880,8 @@ return {
   "^[!/$&-=+:*.%#?@](modlist)$",
   "^[!/$&-=+:*.%#?@](newlink)$",
   "^[!/$&-=+:*.%#?@](link)$",
+  "^[!/$&-=+:*.%#?@](linkpv)$",
+  "^[!/$&-=+:*.%#?@](pv) (%d+) (.*)$",
    "^(add)$",
   "^(rem)$",
   "^(rules)$",
@@ -883,6 +904,8 @@ return {
   "^(modlist)$",
   "^(newlink)$",
   "^(link)$",
+  "^(linkpv)$",
+  "^(pv) (%d+) (.*)$",
   "%[(photo)%]",
   "^!!tgservice (.+)$",
   },
