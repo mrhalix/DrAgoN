@@ -51,9 +51,6 @@ local function welcome_message(msg, new_member)
 end
 
 local function run(msg, matches)
- if is_sudo(msg) then
-        return 'بابایی رفتی ناراحت شدم 😢'
-    end
   local data = load_data(_config.moderation.data)
   local welcome_stat = data[tostring(msg.to.id)]['settings']['welcome']
 
