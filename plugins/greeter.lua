@@ -28,6 +28,7 @@ local function welcome_message(msg, new_member)
         return 'سلام بابایی جونم خوش اومدی به گروهمون ❤️😘'
     end
  if not is_sudo(msg) then
+ 	return '
   local data = load_data(_config.moderation.data)
   local welcome_stat = data[tostring(msg.to.id)]['settings']['welcome']
 
@@ -82,7 +83,7 @@ local function run(msg, matches)
       end
     end
   end
-
+ '
   if welcome_stat ~= 'no' and msg.action and msg.action.type then
     -- do not greet (super)banned users or API bots.
     local action = msg.action.type
