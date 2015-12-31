@@ -14,7 +14,7 @@ local function pre_process(msg)
       savelog(msg.to.id, name.." ["..msg.from.id.."] is banned and kicked ! ")-- Save to logs
       kick_user(user_id, msg.to.id)
       end
-  end
+    end
     -- Check if banned user joins chat
     if action == 'chat_add_user' then
       local user_id = msg.action.user.id
@@ -293,7 +293,7 @@ local function run(msg, matches)
 end
 
 return {
- patterns = {
+  patterns = {
     "^[!/$&-=+:*.%#?@]([Bb]anall) (.*)$",
     "^[!/$&-=+:*.%#?@]([Bb]anall)$",
     "^[!/$&-=+:*.%#?@]([Bb]anlist) (.*)$",
@@ -324,14 +324,6 @@ return {
     "^([Bb]an)$",
     "^([Uu]nban)$",
     "^([Ii]d)$",
-     '^!(whitelist)$',
-      '^!(whitelist) (chat)$',
-      '^!(whitelist) (delete) (chat)$',
-      '^!(whitelist) (delete) (user) (%d+)$',
-      '^!(whitelist) (disable)$',
-      '^!(whitelist) (enable)$',
-      '^!(whitelist) (user) (%d+)$',
-      '^!(unwhitelist)$',
     "^!!tgservice (.+)$",
   },
   run = run,
