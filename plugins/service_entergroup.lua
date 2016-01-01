@@ -58,7 +58,7 @@ local function description_rules(msg, nama)
          rules = data[tostring(msg.to.id)]["rules"]
          rules = "\nRules :\n"..rules.."\n"
       end
-      local sambutan = "You are in group '"..string.gsub(msg.to.print_name, "_", " ").."'\n"
+      local sambutan = "تو در گروه '"..string.gsub(msg.to.print_name, "_", " ").."'هستی\n"
       local text = sambutan..about..rules.."\n"
       local text = text.."خوش اومدی "..nama
       local receiver = get_receiver(msg)
