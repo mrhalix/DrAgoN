@@ -60,7 +60,7 @@ local function description_rules(msg, nama)
       end
       local sambutan = "You are in group '"..string.gsub(msg.to.print_name, "_", " ").."'\n"
       local text = sambutan..about..rules.."\n"
-      local text = text.."خوش اومدی "..name
+      local text = text.."خوش اومدی "..nama
       local receiver = get_receiver(msg)
       send_large_msg(receiver, text, ok_cb, false)
    end
@@ -84,9 +84,6 @@ local function run(msg, matches)
           nama = string.gsub(msg.from.print_name, "_", " ")
       else
           nama = "@"..msg.from.username
-      end
-      else
-          name = ..msg.from.name
       end
       chat_new_user_link(msg)
       description_rules(msg, nama)
