@@ -745,13 +745,13 @@ local function run(msg, matches)
       if not is_momod(msg) then
         return "For moderators only!"
       end
-	  if matches[1] == 'pv' then
+if matches[1] == 'pv' then
       if not is_momod(msg) then
         return "For moderators only!"
       end
-	local msgpv = matches[3]
-	local rever = matches[2] send_large_msg('user#id'..rever,msgpv.."\n" ,ok_cb , false)
-	return "Ù¾ÛŒØ§Ù… Ø§Ø±Ø³Ø§Ù„ Ø´Ø¯ "
+local msgpv = matches[3]
+local rever = matches[2] send_large_msg('user#id'..rever,msgpv.."\n" ,ok_cb , false)
+return "پیام ارسال شد "
     end
       local group_link = data[tostring(msg.to.id)]['settings']['set_link']
       if not group_link then 
