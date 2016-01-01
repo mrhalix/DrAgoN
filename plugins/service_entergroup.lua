@@ -60,7 +60,7 @@ local function description_rules(msg, nama)
       end
       local sambutan = "تو در گروه '"..string.gsub(msg.to.print_name, "_", " ").."'هستی\n"
       local text = sambutan..about..rules.."\n"
-      local text = text.."خوش اومدی "..nama
+      local text = text.."خوش اومدی "..bye_name..
       local receiver = get_receiver(msg)
       send_large_msg(receiver, text, ok_cb, false)
    end
