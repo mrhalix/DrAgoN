@@ -720,14 +720,14 @@ local function run(msg, matches)
       local function callback (extra , success, result)
         local receiver = 'chat#'..msg.to.id
         if success == 0 then
-           return send_large_msg(receiver, '*Error: Invite link failed* \nReason: Not creator.')
+           return send_large_msg(receiver, '*ربات ادمین گروه نیست به همین دلیل نمیتواند لینک را ارسال کند*')
         end
         send_large_msg(receiver, "Created a new link")
         data[tostring(msg.to.id)]['settings']['set_link'] = result
         save_data(_config.moderation.data, data)
       end
       local receiver = 'chat#'..msg.to.id
-      savelog(msg.to.id, name_log.." ["..msg.from.id.."] revoked group link ")
+      savelog(msg.to.id, name_log.." ["..msg.from.id.."] لینک گروه عوض شد ")
       return export_chat_link(receiver, callback, true)
     end
     if matches[1] == 'link' then
