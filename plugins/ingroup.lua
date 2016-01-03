@@ -194,7 +194,7 @@ local function lock_group_namemod(msg, data, target)
   end
   local group_name_set = data[tostring(target)]['settings']['set_name']
   local group_name_lock = data[tostring(target)]['settings']['lock_name']
-  if group_name_lock == 'ðŸ”’' then
+  if group_name_lock == 'Yes' then
     return 'نام گروه از قبل قفل بوده است'
   else
     data[tostring(target)]['settings']['lock_name'] = 'Yes'
@@ -454,11 +454,11 @@ local function run(msg, matches)
     end
   end
   if matches[1] == 'add' then
-    print("group "..msg.to.print_name.."("..msg.to.id..") added")
+    print("گروه "..msg.to.print_name.."("..msg.to.id..") اددشد")
     return modadd(msg)
   end
    if matches[1] == 'rem' then
-    print("group "..msg.to.print_name.."("..msg.to.id..") removed")
+    print("گروه "..msg.to.print_name.."("..msg.to.id..") حذف شد")
     return modrem(msg)
   end
   if matches[1] == 'chat_created' and msg.from.id == 0 then
