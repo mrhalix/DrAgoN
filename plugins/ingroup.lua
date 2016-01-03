@@ -227,7 +227,7 @@ local function lock_group_namemod(msg, data, target)
   if group_name_lock == 'ðŸ”’' then
     return 'Group name is already locked'
   else
-    data[tostring(target)]['settings']['lock_name'] = 'ðŸ”’'
+    data[tostring(target)]['settings']['lock_name'] = 'Yes'
     save_data(_config.moderation.data, data)
     rename_chat('chat#id'..target, group_name_set, ok_cb, false)
     return 'Group name has been locked'
