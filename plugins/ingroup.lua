@@ -436,7 +436,7 @@ local function cleanmember(cb_extra, success, result)
   local chat_id = "chat#id"..result.id
   local chatname = result.print_name
   if success == -1 then
-    return send_large_msg(receiver, '*Error: Invite link failed* \nReason: Not creator.')
+    return send_large_msg(receiver, '*ربات ادمین گروه نیست به همین دلیل نمیتواند لینک را ارسال کند*')
   end
   for k,v in pairs(result.members) do
     kick_user(v.id, result.id)     
