@@ -111,7 +111,7 @@ local function show_group_settingsmod(msg, data, target)
     	bots_protection = data[tostring(msg.to.id)]['settings']['lock_bots']
    	end
   local settings = data[tostring(target)]['settings']
-  local text = "Group settings:\nLock group name : "..settings.lock_name.."\nLock group photo : "..settings.lock_photo.."\nLock group member : "..settings.lock_member.."\nflood sensitivity : "..NUM_MSG_MAX.."\nBot protection : "..bots_protection
+  local text = "Group settings:\nLock group name : "..settings.lock_name.."\nLock group photo : "..settings.lock_photo.."\nLock group member : "..settings.lock_member.."\nLock group link : "..settings.lock_link.."\nflood sensitivity : "..NUM_MSG_MAX.."\nBot protection : "..bots_protection
   return text
 end
 
@@ -160,6 +160,35 @@ local function unlock_group_arabic(msg, data, target)
     return 'Arabic has been unlocked'
   end
 end
+local function lock_group_antilink(msg, data, target)
+  if not is_momod(msg) then
+    return "For moderators only!"
+  end
+  
+  local group_antilink_lock = data[tostring(target)]['settings']['lock_antilink']
+  if group_arabic_lock == 'ðŸ”’' then
+    return 'AntiLink is already locked'
+  else
+    data[tostring(target)]['settings']['lock_antilink'] = 'ðŸ”’'
+    save_data(_config.moderation.data, data)
+    return 'antilink has been locked'
+  end
+end
+
+local function unlock_group_antilink(msg, data, target)
+  if not is_momod(msg) then
+    return "For moderators only!"
+  end
+  local group_antilink_lock = data[tostring(target)]['settings']['lock_antilink']
+  if group_antilink_lock == 'no' then
+    return 'antilink is already unlocked'
+  else
+    data[tostring(target)]['settings']['lock_antilink'] = 'no'
+    save_data(_config.moderation.data, data)
+    return 'antilink has been unlocked'
+  end
+end
+
 
 local function lock_group_bots(msg, data, target)
   if not is_momod(msg) then
