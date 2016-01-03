@@ -166,7 +166,7 @@ local function lock_group_antilink(msg, data, target)
   end
   
   local group_antilink_lock = data[tostring(target)]['settings']['lock_antilink']
-  if group_arabic_lock == 'ðŸ”’' then
+  if group_antilink_lock == 'Yes' then
     return 'AntiLink is already locked'
   else
     data[tostring(target)]['settings']['lock_antilink'] = 'ðŸ”’'
