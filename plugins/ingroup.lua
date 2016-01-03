@@ -106,7 +106,7 @@ local function show_group_settingsmod(msg, data, target)
         	NUM_MSG_MAX = 5
       	end
     end
-    local bots_protection = "ðŸ”’"
+    local bots_protection = "Yes"
     if data[tostring(msg.to.id)]['settings']['lock_bots'] then
     	bots_protection = data[tostring(msg.to.id)]['settings']['lock_bots']
    	end
