@@ -4,7 +4,7 @@ local function block_user_callback(cb_extra, success, result)
   local receiver = cb_extra.receiver
   local user = 'user#id'..result.id
   if success == 0 then
-    return send_large_msg(receiver, "I cant block user.")
+    return send_large_msg(receiver, "عملیات بلاک شکست خورد ممکن است آیدی را اشتباه وارد کرده باشید دوباره چک کنید!!")
   end
   block_user(user, cb_ok, false)
 end
@@ -20,7 +20,7 @@ local function run(msg, matches)
     if not is_sudo(msg) then
     return "مشکلی داری باهاش؟ اگه داری بگو خب"
   end
-    return "User Has Been Blocked"
+    return "ایولاااا خیلی عوضی بود به هرحال بلاک شد خوشحال باش"
   end
 end
  
