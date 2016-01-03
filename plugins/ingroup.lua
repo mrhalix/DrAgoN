@@ -111,7 +111,7 @@ local function show_group_settingsmod(msg, data, target)
     	bots_protection = data[tostring(msg.to.id)]['settings']['lock_bots']
    	end
   local settings = data[tostring(target)]['settings']
-  local text = "ØªÙ†Ø¸ÛŒÙ…Ø§Øª Ú¯Ø±ÙˆÙ‡:\nÙ‚ÙÙ„ Ø§Ø³Ù…: "..settings.lock_name.."\nÙ‚ÙÙ„ ÙØ§Ø±Ø³ÛŒ: "..settings.lock_arabic.."\nÙ‚ÙÙ„ Ø¹Ú©Ø³:"..settings.lock_photo.."\nÙ‚ÙÙ„ Ø§Ø¹Ø¶Ø§:"..settings.lock_member.."\n ØªØ¹Ø¯Ø§Ø¯ Ù¾ÛŒØ§Ù… Ø§Ø³Ù¾Ù…:"..NUM_MSG_MAX.."\n Ú©ÛŒÚ© Ú©Ø±Ø¯Ù† Ø¨Ø§Øª Ù‡Ø§:"..bots_protection
+  local text = "Group settings:\nLock group name : "..settings.lock_name.."\nLock group photo : "..settings.lock_photo.."\nLock group member : "..settings.lock_member.."\nflood sensitivity : "..NUM_MSG_MAX.."\nBot protection : "..bots_protection
   return text
 end
 
