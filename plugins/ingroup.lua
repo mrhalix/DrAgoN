@@ -705,6 +705,10 @@ local function run(msg, matches)
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked arabic ")
         return lock_group_arabic(msg, data, target)
       end
+      if matches[2] == 'antilink' then
+        savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked antilink ")
+        return lock_group_antilink(msg, data, target)
+      end
       if matches[2] == 'bots' then
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked bots ")
         return lock_group_bots(msg, data, target)
@@ -731,6 +735,10 @@ local function run(msg, matches)
       if matches[2] == 'arabic' then
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked arabic ")
         return unlock_group_arabic(msg, data, target)
+      end
+      if matches[2] == 'antilink' then
+        savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked antilink ")
+        return unlock_group_antilink(msg, data, target)
       end
       if matches[2] == 'bots' then
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked bots ")
