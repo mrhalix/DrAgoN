@@ -1,4 +1,3 @@
-
 local function pre_process(msg)
   -- SERVICE MESSAGE
   if msg.action and msg.action.type then
@@ -93,12 +92,12 @@ local function username_id(cb_extra, success, result)
       if member_id == our_id then return false end
       if get_cmd == 'kick' then
         if is_momod2(member_id, chat_id) then
-          return send_large_msg(receiver, "شما نمیتوانید ادمین هارا کیک کنید!!")
+          return send_large_msg(receiver, "ادمین کیک نمیشود")
         end
         return kick_user(member_id, chat_id)
       elseif get_cmd == 'ban' then
         if is_momod2(member_id, chat_id) then
-          return send_large_msg(receiver, "شما نمیتوانید ادمین هارا بن کنید!!")
+          return send_large_msg(receiver, "ادمین بن نمیشود")
         end
         send_large_msg(receiver, 'کاربر @'..member..' ['..member_id..'] بن شد')
         return ban_user(member_id, chat_id)
@@ -108,10 +107,10 @@ local function username_id(cb_extra, success, result)
         redis:srem(hash, member_id)
         return 'User '..user_id..' unbanned'
       elseif get_cmd == 'banall' then
-        send_large_msg(receiver, 'کاربر @'..member..' ['..member_id..'] از همه گروه ها بن شد')
+        send_large_msg(receiver, 'کاربر @'..member..' ['..member_id..'] بن جهانی شد')
         return banall_user(member_id, chat_id)
       elseif get_cmd == 'unbanall' then
-        send_large_msg(receiver, 'کاربر @'..member..' ['..member_id..'] آنبن شد')
+        send_large_msg(receiver, 'کاربر @'..member..' ['..member_id..'] آنبن جهانی شد')
         return unbanall_user(member_id, chat_id)
       end
     end
@@ -121,7 +120,7 @@ end
 local function run(msg, matches)
  if matches[1]:lower() == 'id' then
     if msg.to.type == "user" then
-      return "آیدی شما : "..msg.from.id
+      return "Bot ID: "..msg.to.id.. "\n\nYour ID: "..msg.from.id
     end
     if type(msg.reply_id) ~= "nil" then
       local name = user_print_name(msg.from)
@@ -138,7 +137,6 @@ local function run(msg, matches)
     if msg.to.type == 'chat' then
       local name = user_print_name(msg.from)
       savelog(msg.to.id, name.." ["..msg.from.id.."] left using kickme ")-- Save to logs
-      return "ایول با این روش میتونی دوباره بیای"
       chat_del_user("chat#id"..msg.to.id, "user#id"..msg.from.id, ok_cb, false)
     end
   end
@@ -294,7 +292,7 @@ local function run(msg, matches)
 end
 
 return {
-   patterns = {
+  patterns = {
     "^[!/$&-=+:*.%#?@]([Bb]anall) (.*)$",
     "^[!/$&-=+:*.%#?@]([Bb]anall)$",
     "^[!/$&-=+:*.%#?@]([Bb]anlist) (.*)$",
@@ -310,7 +308,7 @@ return {
     "^[!/$&-=+:*.%#?@]([Bb]an)$",
     "^[!/$&-=+:*.%#?@]([Uu]nban)$",
     "^[!/$&-=+:*.%#?@]([Ii]d)$",
-    "^([Bb]anall) (.*)$",
+     "^([Bb]anall) (.*)$",
     "^([Bb]anall)$",
     "^([Bb]anlist) (.*)$",
     "^([Bb]anlist)$",
