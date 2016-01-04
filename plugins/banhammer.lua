@@ -130,7 +130,7 @@ local function run(msg, matches)
     elseif matches[1]:lower() == 'id' then
       local name = user_print_name(msg.from)
       savelog(msg.to.id, name.." ["..msg.from.id.."] used /id ")
-      return "آیدی گروه : " ..string.gsub(msg.to.print_name, "_", " ").. ":\n\n"..msg.to.id "\nآیدی شما ["..msg.from.id.."]\nیوزر نیم شما:"..msg.from.username
+      return "آیدی گروه : " ..string.gsub(msg.to.print_name, "_", " ").. ":\n\n"..msg.to.id"
     end
   end
   local receiver = get_receiver(msg)
@@ -138,6 +138,7 @@ local function run(msg, matches)
     if msg.to.type == 'chat' then
       local name = user_print_name(msg.from)
       savelog(msg.to.id, name.." ["..msg.from.id.."] left using kickme ")-- Save to logs
+      return "ایول با این روش میتونی دوباره بیای"
       chat_del_user("chat#id"..msg.to.id, "user#id"..msg.from.id, ok_cb, false)
     end
   end
