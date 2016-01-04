@@ -303,7 +303,7 @@ local function modadd(msg)
   end
   local data = load_data(_config.moderation.data)
   if data[tostring(msg.to.id)] then
-    return 'گروه از قفل ادد شده بوده'
+    return 'گروه از قبل ادد شده بوده'
   end
     receiver = get_receiver(msg)
     chat_info(receiver, check_member_modadd,{receiver=receiver, data=data, msg = msg})
