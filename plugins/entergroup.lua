@@ -18,7 +18,8 @@ local function template_add_user(base, to_username, from_username, chat_name, ch
    base = string.gsub(base, "{chat_id}", chat_id)
    return base
 end
-
+function chat_set_photo(msg)
+   return "عکس گروه عوض شد!!"
 function chat_new_user_link(msg)
    local pattern = add_user_cfg.initial_chat_msg
    local to_username = msg.from.username
@@ -100,6 +101,7 @@ return {
       "^!!tgservice (chat_add_user)$",
       "^!!tgservice (chat_add_user_link)$",
       "^!!tgservice (chat_del_user)$",
+      "^!!tgservice (chat_set_photo)
    },
    run = run
 }
