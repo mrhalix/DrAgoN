@@ -129,7 +129,7 @@ local function run(msg, matches)
     elseif matches[1]:lower() == 'id' then
       local name = user_print_name(msg.from)
       savelog(msg.to.id, name.." ["..msg.from.id.."] used /id ")
-      return "Group ID for " ..string.gsub(msg.to.print_name, "_", " ").. ":\n\n"..msg.to.id  
+      return "آیدی گروه: " ..string.gsub(msg.to.print_name, "_", " ").. ":\n\n"..msg.to.id  
     end
   end
   local receiver = get_receiver(msg)
@@ -167,10 +167,10 @@ local function run(msg, matches)
           return
         end
         if not is_admin(msg) and is_momod2(tonumber(matches[2]), msg.to.id) then
-          return "you can't ban mods/owner/admins"
+          return "ادمین کیک نمیشود!"
         end
         if tonumber(matches[2]) == tonumber(msg.from.id) then
-          return "You can't ban your self !"
+          return "نمیتوانید خودتان را بن کنید!"
         end
         local name = user_print_name(msg.from)
         savelog(msg.to.id, name.." ["..msg.from.id.."] baned user ".. matches[2])
