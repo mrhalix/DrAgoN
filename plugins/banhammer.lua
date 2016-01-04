@@ -93,25 +93,25 @@ local function username_id(cb_extra, success, result)
       if member_id == our_id then return false end
       if get_cmd == 'kick' then
         if is_momod2(member_id, chat_id) then
-          return send_large_msg(receiver, "شما نمیتوانید ادمین ها را کیک کنید!!")
+          return send_large_msg(receiver, "شما نمیتوانید ادمین هارا کیک کنید!!")
         end
         return kick_user(member_id, chat_id)
       elseif get_cmd == 'ban' then
         if is_momod2(member_id, chat_id) then
-          return send_large_msg(receiver, "شما نمیتوانید ادمین ها را بن کنید!!")
+          return send_large_msg(receiver, "شما نمیتوانید ادمین هارا بن کنید!!")
         end
-        send_large_msg(receiver, 'کاربر @'..member..' ['..member_id..'] بن شد")
+        send_large_msg(receiver, 'کاربر @'..member..' ['..member_id..'] بن شد')
         return ban_user(member_id, chat_id)
       elseif get_cmd == 'unban' then
-        send_large_msg(receiver, 'کاربر @'..member..' ['..member_id..'] از بن خارج شد")
+        send_large_msg(receiver, 'کاربر @'..member..' ['..member_id..'] آنبن شد')
         local hash =  'banned:'..chat_id
         redis:srem(hash, member_id)
         return 'User '..user_id..' unbanned'
       elseif get_cmd == 'banall' then
-        send_large_msg(receiver, 'کاربر @'..member..' ['..member_id..'] بن گلوبال شد')
+        send_large_msg(receiver, 'کاربر @'..member..' ['..member_id..'] از همه گروه ها بن شد')
         return banall_user(member_id, chat_id)
       elseif get_cmd == 'unbanall' then
-        send_large_msg(receiver, 'کاربر @'..member..' ['..member_id..'] ازبن خارج شد")
+        send_large_msg(receiver, 'کاربر @'..member..' ['..member_id..'] آنبن شد')
         return unbanall_user(member_id, chat_id)
       end
     end
@@ -121,7 +121,7 @@ end
 local function run(msg, matches)
  if matches[1]:lower() == 'id' then
     if msg.to.type == "user" then
-      return "آیدی شما :  "..msg.from.id
+      return "آیدی شما : "..msg.from.id
     end
     if type(msg.reply_id) ~= "nil" then
       local name = user_print_name(msg.from)
@@ -130,7 +130,7 @@ local function run(msg, matches)
     elseif matches[1]:lower() == 'id' then
       local name = user_print_name(msg.from)
       savelog(msg.to.id, name.." ["..msg.from.id.."] used /id ")
-      return "آیدی : " ..string.gsub(msg.to.print_name, "_", " ").. ":\n\n"..msg.to.id  
+      return "آیدی گروه : " ..string.gsub(msg.to.print_name, "_", " ").. ":\n\n"..msg.to.id "\nآیدی شما :"..msg.from.id"\nیوزر نیم شما:"..msg.from.username
     end
   end
   local receiver = get_receiver(msg)
@@ -138,7 +138,6 @@ local function run(msg, matches)
     if msg.to.type == 'chat' then
       local name = user_print_name(msg.from)
       savelog(msg.to.id, name.." ["..msg.from.id.."] left using kickme ")-- Save to logs
-      return "شما کیک میشوید!!"
       chat_del_user("chat#id"..msg.to.id, "user#id"..msg.from.id, ok_cb, false)
     end
   end
@@ -169,10 +168,10 @@ local function run(msg, matches)
           return
         end
         if not is_admin(msg) and is_momod2(tonumber(matches[2]), msg.to.id) then
-          return "شما نمیتوانید ادمین هارا بن کنید!!"
+          return "you can't ban mods/owner/admins"
         end
         if tonumber(matches[2]) == tonumber(msg.from.id) then
-          return "خخخخخخخخخخخخخ دادا میخوای خودتو بن کنی نمیشه داش ببخشید"
+          return "You can't ban your self !"
         end
         local name = user_print_name(msg.from)
         savelog(msg.to.id, name.." ["..msg.from.id.."] baned user ".. matches[2])
@@ -226,10 +225,10 @@ local function run(msg, matches)
           return
         end
         if not is_admin(msg) and is_momod2(matches[2], msg.to.id) then
-          return "شما نمیتوانید ادمین ها را بن کنید!!"
+          return "you can't kick mods/owner/admins"
         end
         if tonumber(matches[2]) == tonumber(msg.from.id) then
-          return "خخخخخخخخخخخخخخخخ دادا میخوای خودتو کیک کنی ببخشید نمیشه داش"
+          return "You can't kick your self !"
         end
         local name = user_print_name(msg.from)
         savelog(msg.to.id, name.." ["..msg.from.id.."] kicked user ".. matches[2])
@@ -242,7 +241,7 @@ local function run(msg, matches)
         chat_info(receiver, username_id, {get_cmd=get_cmd, receiver=receiver, chat_id=msg.to.id, member=member})
       end
     else
-      return 'هههههههههههههه دلم درد گرفت اینجا پیویه نه گروه'
+      return 'This isn\'t a chat group'
     end
   end
 
@@ -294,7 +293,7 @@ local function run(msg, matches)
 end
 
 return {
-  patterns = {
+   patterns = {
     "^[!/$&-=+:*.%#?@]([Bb]anall) (.*)$",
     "^[!/$&-=+:*.%#?@]([Bb]anall)$",
     "^[!/$&-=+:*.%#?@]([Bb]anlist) (.*)$",
