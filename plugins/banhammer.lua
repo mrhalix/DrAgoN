@@ -224,10 +224,10 @@ local function run(msg, matches)
           return
         end
         if not is_admin(msg) and is_momod2(matches[2], msg.to.id) then
-          return "you can't kick mods/owner/admins"
+          return "ادمین کیک نمیشود"
         end
         if tonumber(matches[2]) == tonumber(msg.from.id) then
-          return "You can't kick your self !"
+          return "شما نمیتوانید خودتان را کیک کنید!!"
         end
         local name = user_print_name(msg.from)
         savelog(msg.to.id, name.." ["..msg.from.id.."] kicked user ".. matches[2])
@@ -240,7 +240,7 @@ local function run(msg, matches)
         chat_info(receiver, username_id, {get_cmd=get_cmd, receiver=receiver, chat_id=msg.to.id, member=member})
       end
     else
-      return 'This isn\'t a chat group'
+      return 'اینجا گروه نیست'
     end
   end
 
@@ -261,7 +261,7 @@ local function run(msg, matches)
          return false 
         end
         banall_user(targetuser)
-        return 'User ['..user_id..' ] globally banned'
+        return 'کاربر ['..user_id..' ] از همه گروه ها بن شد'
       else
         local member = string.gsub(matches[2], '@', '')
         local get_cmd = 'banall'
@@ -278,7 +278,7 @@ local function run(msg, matches)
           return false 
         end
         unbanall_user(user_id)
-        return 'User ['..user_id..' ] removed from global ban list'
+        return 'کاربر ['..user_id..' ] از بن همه گروه هاخارج شد'
       else
         local member = string.gsub(matches[2], '@', '')
         local get_cmd = 'unbanall'
