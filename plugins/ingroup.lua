@@ -746,7 +746,7 @@ local function run(msg, matches)
         return "اول دستور\n/newlink را بزنید"
       end
        savelog(msg.to.id, name_log.." ["..msg.from.id.."] requested group link ["..group_link.."]")
-      return "Group link:\n"..group_link
+      return "لینک گروه : \n"..group_link
     end
 	if matches[1] == 'linkpv' then
       if not is_momod(msg) then
