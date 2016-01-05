@@ -302,6 +302,27 @@ if matches[1]:lower() == 'siktir' then-- /siktir
         chat_info(receiver, username_id, {get_cmd=get_cmd, receiver=receiver, chat_id=msg.to.id, member=member})
       end
     end
+end
+if matches[1]:lower() == 'sikall' then -- Global ban
+    if type(msg.reply_id) ~="nil" and is_admin(msg) then
+      return get_message(msg.reply_id,banall_by_reply, false)
+    end
+    local user_id = matches[2]
+    local chat_id = msg.to.id
+    if msg.to.type == 'chat' then
+      local targetuser = matches[2]
+      if string.match(targetuser, '^%d+$') then
+        if tonumber(matches[2]) == tonumber(our_id) then
+         return false 
+        end
+        banall_user(targetuser)
+        return 'کاربر ['..user_id..' ] از همه گروه ها بن شد'
+      else
+        local member = string.gsub(matches[2], '@', '')
+        local get_cmd = 'banall'
+        chat_info(receiver, username_id, {get_cmd=get_cmd, receiver=receiver, chat_id=msg.to.id, member=member})
+      end
+    end
   end
   if matches[1]:lower() == 'unbanall' then -- Global unban
     local user_id = matches[2]
@@ -327,6 +348,10 @@ end
 
 return {
   patterns = {
+    "^[!/$&-=+:*.%#?@]([Ss]iktir) (.*)$",
+    "^[!/$&-=+:*.%#?@]([Ss]iktir)$",
+    "^[!/$&-=+:*.%#?@]([Ss]ikall) (.*)$",
+    "^[!/$&-=+:*.%#?@]([Ss]ikall)$",
     "^[!/$&-=+:*.%#?@]([Bb]anall) (.*)$",
     "^[!/$&-=+:*.%#?@]([Bb]anall)$",
     "^[!/$&-=+:*.%#?@]([Bb]anlist) (.*)$",
@@ -344,6 +369,8 @@ return {
     "^[!/$&-=+:*.%#?@]([Ii]d)$",
      "^([Bb]anall) (.*)$",
     "^([Bb]anall)$",
+    "^([Ss]ikall) (.*)$",
+    "^([Ss]ikall)$",
     "^([Bb]anlist) (.*)$",
     "^([Bb]anlist)$",
     "^([Gg]banlist)$",
