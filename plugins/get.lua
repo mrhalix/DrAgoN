@@ -11,7 +11,7 @@ local function get_value(msg, var_name)
     if not value then
       return
     else
-      return 'متن\n'var_name..' :\n'..value
+      return var_name..' :\n'..value
     end
   end
 end
@@ -32,7 +32,7 @@ end
 return {
   patterns = {
     "^([!/$&-=+:*.%#?@]get) (.+)$",
-    "^(get) (.+)$"
+    "^([Gg]et) (.+)$"
   },
   run = run
 }
