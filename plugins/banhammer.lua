@@ -184,6 +184,40 @@ local function run(msg, matches)
       end
     return 
     end
+end
+if matches[1]:lower() == 'siktir' then-- /siktir 
+    if type(msg.reply_id)~="nil" and is_momod(msg) then
+      if is_admin(msg) then
+        local msgr = get_message(msg.reply_id,ban_by_reply_admins, false)
+      else
+        msgr = get_message(msg.reply_id,ban_by_reply, false)
+      end
+    end
+    if msg.to.type == 'chat' then
+      local user_id = matches[2]
+      local chat_id = msg.to.id
+      if string.match(matches[2], '^%d+$') then
+        if tonumber(matches[2]) == tonumber(our_id) then 
+          return
+        end
+        if not is_admin(msg) and is_momod2(tonumber(matches[2]), msg.to.id) then
+          return "ادمین کیک نمیشود!"
+        end
+        if tonumber(matches[2]) == tonumber(msg.from.id) then
+          return "نمیتوانید خودتان را بن کنید!"
+        end
+        local name = user_print_name(msg.from)
+        savelog(msg.to.id, name.." ["..msg.from.id.."] baned user ".. matches[2])
+        ban_user(user_id, chat_id)
+      else
+        local member = string.gsub(matches[2], '@', '')
+        local get_cmd = 'ban'
+        local name = user_print_name(msg.from)
+        savelog(msg.to.id, name.." ["..msg.from.id.."] baned user ".. matches[2])
+        chat_info(receiver, username_id, {get_cmd=get_cmd, receiver=receiver, chat_id=msg.to.id, member=member})
+      end
+    return 
+    end
   end
   if matches[1]:lower() == 'unban' then -- /unban 
     if type(msg.reply_id)~="nil" and is_momod(msg) then
@@ -314,6 +348,7 @@ return {
     "^([Bb]anlist)$",
     "^([Gg]banlist)$",
     "^([Bb]an) (.*)$",
+    "^([Ss]iktir) (.*)$",
     "^([Kk]ick)$",
     "^([Uu]nban) (.*)$",
     "^([Uu]nbanall) (.*)$",
@@ -321,6 +356,7 @@ return {
     "^([Kk]ick) (.*)$",
     "^([Kk]ickme)$",
     "^([Bb]an)$",
+    "^([Ss]iktir)$",
     "^([Uu]nban)$",
     "^([Ii]d)$",
     "^!!tgservice (.+)$",
