@@ -765,7 +765,7 @@ return "پیام ارسال شد "
         return "اول دستور\n/newlink \nرا بزنید"
       end
        savelog(msg.to.id, name_log.." ["..msg.from.id.."] requested group link ["..group_link.."]")
-     send_large_msg('user#id'..msg.from.id, "Group link:\n"..group_link)
+     send_large_msg('user#id'..msg.from.id, "لینک گروه : \n"..group_link)
     end
     if matches[1] == 'setowner' then
       if not is_owner(msg) then
